@@ -52,3 +52,4 @@ COPY validate_requests.py .
 ENV PYTHONUNBUFFERED=1
 ENV X509_USER_PROXY=/etc/grid-security/x509up
 
+RUN chgrp -R 0 /home/atlas && chmod -R g+rwX /home/atlas
