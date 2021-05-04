@@ -33,7 +33,7 @@ RUN apt update && \
     apt upgrade -y && \
     apt install -y sudo
 
-RUN useradd -ms /bin/bash atlas -G sudo && passwd -d atlas
+RUN useradd -ms /bin/bash output -G sudo && passwd -d output
 RUN mkdir -p /etc/grid-security/certificates /etc/grid-security/vomsdir
 
 COPY requirements.txt .
@@ -51,4 +51,4 @@ COPY transformer.py .
 COPY validate_requests.py .
 ENV PYTHONUNBUFFERED=1
 
-RUN chgrp -R 0 /home/atlas && chmod -R g+rwX /home/atlas
+RUN chgrp -R 0 /home/output && chmod -R g+rwX /home/output

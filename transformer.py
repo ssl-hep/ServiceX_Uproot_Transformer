@@ -84,7 +84,7 @@ def callback(channel, method, properties, body):
                                     info="Starting")
 
         root_file = _file_path.replace('/', ':')
-        output_path = '/home/atlas/' + root_file
+        output_path = '/home/output/' + root_file
         transform_single_file(_file_path, output_path+".parquet", servicex)
 
         tock = time.time()
