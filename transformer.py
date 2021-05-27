@@ -31,15 +31,29 @@ import traceback
 
 import awkward as ak
 import time
+#export PYTHONPATH=$PYTHONPATH:$/Users/zche/Documents/2021_Spring/IRIS-HEP/develop/ServiceX_transformer
 
-from servicex.transformer.servicex_adapter import ServiceXAdapter
-from servicex.transformer.transformer_argument_parser import TransformerArgumentParser
-from servicex.transformer.kafka_messaging import KafkaMessaging
-from servicex.transformer.object_store_manager import ObjectStoreManager
-from servicex.transformer.rabbit_mq_manager import RabbitMQManager
-from servicex.transformer.uproot_events import UprootEvents
-from servicex.transformer.uproot_transformer import UprootTransformer
-from servicex.transformer.arrow_writer import ArrowWriter
+import sys
+sys.path.append("../")
+from ServiceX_transformer.servicex.transformer.servicex_adapter import ServiceXAdapter
+from ServiceX_transformer.servicex.transformer.transformer_argument_parser import TransformerArgumentParser
+from ServiceX_transformer.servicex.transformer.kafka_messaging import KafkaMessaging
+from ServiceX_transformer.servicex.transformer.object_store_manager import ObjectStoreManager
+from ServiceX_transformer.servicex.transformer.rabbit_mq_manager import RabbitMQManager
+from ServiceX_transformer.servicex.transformer.uproot_events import UprootEvents
+from ServiceX_transformer.servicex.transformer.uproot_transformer import UprootTransformer
+from ServiceX_transformer.servicex.transformer.arrow_writer import ArrowWriter
+
+# from servicex.transformer.servicex_adapter import ServiceXAdapter
+# from servicex.transformer.transformer_argument_parser import TransformerArgumentParser
+# from servicex.transformer.kafka_messaging import KafkaMessaging
+# from servicex.transformer.object_store_manager import ObjectStoreManager
+# from servicex.transformer.rabbit_mq_manager import RabbitMQManager
+# from servicex.transformer.uproot_events import UprootEvents
+# from servicex.transformer.uproot_transformer import UprootTransformer
+# from servicex.transformer.arrow_writer import ArrowWriter
+
+
 import os
 import pyarrow.parquet as pq
 import pandas as pd
@@ -92,7 +106,9 @@ def callback(channel, method, properties, body):
         if object_store:
             object_store.upload_file(_request_id, root_file+".parquet", output_path+".parquet")
             os.remove(output_path+".parquet")
-
+        
+        if volume:
+            output_path = os.path.join(subdir, root_file)
         servicex.post_status_update(file_id=_file_id,
                                     status_code="complete",
                                     info="Success")
@@ -102,6 +118,7 @@ def callback(channel, method, properties, body):
                                    total_time=round(tock - tick, 2),
                                    total_events=0,
                                    total_bytes=0)
+        
 
     except Exception as error:
         exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -188,6 +205,9 @@ if __name__ == "__main__":
     elif args.result_destination == 'object-store':
         messaging = None
         object_store = ObjectStoreManager()
+    elif args.result_destination == 'volume':
+        messaging = None
+        volume = True
 
     compile_code()
 

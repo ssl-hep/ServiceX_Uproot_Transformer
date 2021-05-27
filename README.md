@@ -18,6 +18,7 @@ usage: transformer.py [-h] [--brokerlist BROKERLIST] [--topic TOPIC]
                       [--result-format {arrow,parquet,root-file}]
                       [--max-message-size MAX_MESSAGE_SIZE]
                       [--rabbit-uri RABBIT_URI] [--request-id REQUEST_ID]
+                      [--subdir SUBDIR]
 
 Uproot Transformer
 
@@ -42,6 +43,8 @@ optional arguments:
   --rabbit-uri RABBIT_URI
   --request-id REQUEST_ID
                         Request ID to read from queue
+
+  --subdir SUBDIR       subdirectory in persistence volume to write result to
 ```
 
 You will need an X509 proxy available as a mountable volume. The X509 Secret
