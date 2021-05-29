@@ -44,7 +44,7 @@ optional arguments:
   --request-id REQUEST_ID
                         Request ID to read from queue
 
-  --subdir SUBDIR       subdirectory in persistence volume to write result to
+  --subdir SUBDIR       Subdirectory in the persistence volume to write result to
 ```
 
 You will need an X509 proxy available as a mountable volume. The X509 Secret
