@@ -31,7 +31,6 @@ import traceback
 
 import awkward as ak
 import time
-#export PYTHONPATH=$PYTHONPATH:$/Users/zche/Documents/2021_Spring/IRIS-HEP/develop/ServiceX_transformer
 
 import sys
 sys.path.append("../")
@@ -52,7 +51,6 @@ from ServiceX_transformer.servicex.transformer.arrow_writer import ArrowWriter
 # from servicex.transformer.uproot_events import UprootEvents
 # from servicex.transformer.uproot_transformer import UprootTransformer
 # from servicex.transformer.arrow_writer import ArrowWriter
-
 
 import os
 import pyarrow.parquet as pq
