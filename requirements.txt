@@ -12,10 +12,9 @@ pyarrow==3.0.0
 pytest==4.6.11
 pytest-mock==2.0.0
 requests==2.24.0
-servicex-transformer==1.0.0rc2
 uproot==4.0.1
 xxhash==1.4.4
-
-
+retry == 0.9.2
+requests == 2.24.0
 # There is no way the small amount of code written in this repo needs all this - are these
 # dependencies and they should just included there?
