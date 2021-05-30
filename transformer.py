@@ -32,25 +32,25 @@ import traceback
 import awkward as ak
 import time
 
-import sys
-sys.path.append("../")
-from ServiceX_transformer.servicex.transformer.servicex_adapter import ServiceXAdapter
-from ServiceX_transformer.servicex.transformer.transformer_argument_parser import TransformerArgumentParser
-from ServiceX_transformer.servicex.transformer.kafka_messaging import KafkaMessaging
-from ServiceX_transformer.servicex.transformer.object_store_manager import ObjectStoreManager
-from ServiceX_transformer.servicex.transformer.rabbit_mq_manager import RabbitMQManager
-from ServiceX_transformer.servicex.transformer.uproot_events import UprootEvents
-from ServiceX_transformer.servicex.transformer.uproot_transformer import UprootTransformer
-from ServiceX_transformer.servicex.transformer.arrow_writer import ArrowWriter
+# import sys
+# sys.path.append("../")
+# from ServiceX_transformer.servicex.transformer.servicex_adapter import ServiceXAdapter
+# from ServiceX_transformer.servicex.transformer.transformer_argument_parser import TransformerArgumentParser
+# from ServiceX_transformer.servicex.transformer.kafka_messaging import KafkaMessaging
+# from ServiceX_transformer.servicex.transformer.object_store_manager import ObjectStoreManager
+# from ServiceX_transformer.servicex.transformer.rabbit_mq_manager import RabbitMQManager
+# from ServiceX_transformer.servicex.transformer.uproot_events import UprootEvents
+# from ServiceX_transformer.servicex.transformer.uproot_transformer import UprootTransformer
+# from ServiceX_transformer.servicex.transformer.arrow_writer import ArrowWriter
 
-# from servicex.transformer.servicex_adapter import ServiceXAdapter
-# from servicex.transformer.transformer_argument_parser import TransformerArgumentParser
-# from servicex.transformer.kafka_messaging import KafkaMessaging
-# from servicex.transformer.object_store_manager import ObjectStoreManager
-# from servicex.transformer.rabbit_mq_manager import RabbitMQManager
-# from servicex.transformer.uproot_events import UprootEvents
-# from servicex.transformer.uproot_transformer import UprootTransformer
-# from servicex.transformer.arrow_writer import ArrowWriter
+from servicex.transformer.servicex_adapter import ServiceXAdapter
+from servicex.transformer.transformer_argument_parser import TransformerArgumentParser
+from servicex.transformer.kafka_messaging import KafkaMessaging
+from servicex.transformer.object_store_manager import ObjectStoreManager
+from servicex.transformer.rabbit_mq_manager import RabbitMQManager
+from servicex.transformer.uproot_events import UprootEvents
+from servicex.transformer.uproot_transformer import UprootTransformer
+from servicex.transformer.arrow_writer import ArrowWriter
 
 import os
 import pyarrow.parquet as pq
