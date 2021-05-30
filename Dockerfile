@@ -49,7 +49,7 @@ RUN chmod +x proxy-exporter.sh
 
 COPY transformer.py .
 
-COPY servicex/temp-transformer .
+COPY servicex/temptransformer ./temptransformer
 
 COPY validate_requests.py .
 ENV PYTHONUNBUFFERED=1
