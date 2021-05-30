@@ -48,6 +48,7 @@ COPY proxy-exporter.sh .
 RUN chmod +x proxy-exporter.sh
 
 COPY transformer.py .
+COPY servicex/transformer .
 COPY validate_requests.py .
 ENV PYTHONUNBUFFERED=1
 ENV X509_USER_PROXY=/etc/grid-security/x509up
