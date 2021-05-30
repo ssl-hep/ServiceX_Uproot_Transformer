@@ -43,14 +43,14 @@ import time
 # from ServiceX_transformer.servicex.transformer.uproot_transformer import UprootTransformer
 # from ServiceX_transformer.servicex.transformer.arrow_writer import ArrowWriter
 
-from temp-transformer.servicex_adapter import ServiceXAdapter
-from temp-transformer.transformer_argument_parser import TransformerArgumentParser
-from temp-transformer.kafka_messaging import KafkaMessaging
-from temp-transformer.object_store_manager import ObjectStoreManager
-from temp-transformer.rabbit_mq_manager import RabbitMQManager
-from temp-transformer.uproot_events import UprootEvents
-from temp-transformer.uproot_transformer import UprootTransformer
-from temp-transformer.arrow_writer import ArrowWriter
+from temptransformer.servicex_adapter import ServiceXAdapter
+from temptransformer.transformer_argument_parser import TransformerArgumentParser
+from temptransformer.kafka_messaging import KafkaMessaging
+from temptransformer.object_store_manager import ObjectStoreManager
+from temptransformer.rabbit_mq_manager import RabbitMQManager
+from temptransformer.uproot_events import UprootEvents
+from temptransformer.uproot_transformer import UprootTransformer
+from temptransformer.arrow_writer import ArrowWriter
 
 import os
 import pyarrow.parquet as pq
