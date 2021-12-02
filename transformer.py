@@ -305,7 +305,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     logger = initialize_logging(args.request_id)
-
+    import minio
+    logger.warning(f"minio version: {minio.__version__}")
     kafka_brokers = TransformerArgumentParser.extract_kafka_brokers(args.brokerlist)
 
     logger.info(f"result destination: {args.result_destination}  output dir: {args.output_dir}")
