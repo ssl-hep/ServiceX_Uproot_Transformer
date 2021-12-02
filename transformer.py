@@ -208,7 +208,7 @@ def callback(channel, method, properties, body):
                                     status_code="complete",
                                     info="Success")
 
-        servicex.put_file_complete(_file_path, _file_id, "success ",
+        servicex.put_file_complete(_file_path, _file_id, "success",
                                    num_messages=0,
                                    total_time=total_time,
                                    total_events=0,
