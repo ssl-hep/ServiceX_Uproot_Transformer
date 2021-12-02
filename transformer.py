@@ -200,7 +200,7 @@ def callback(channel, method, properties, body):
         tock = time.time()
         total_time = round(tock - tick, 2)
         if object_store:
-            sys.stderr.write("request_id: %s output: %s path: %s".format(_request_id, safe_output_file, output_path))
+            sys.stderr.write("request_id: {0} output: {1} path: {2}".format(_request_id, safe_output_file, output_path))
             object_store.upload_file(_request_id, safe_output_file, output_path)
             os.remove(output_path)
 
