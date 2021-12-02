@@ -5,7 +5,7 @@ coverage==4.5.2
 flake8==3.5.0
 kafka-python==2.0.1
 lz4==2.2.1
-minio==6.0.2
+minio==7.1.2
 numpy==1.21.2
 pika==1.1.0
 pyarrow==3.0.0
