@@ -27,9 +27,6 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import json
 import logging
-import os
-import sys
-import time
 import timeit
 from typing import NamedTuple
 
@@ -43,15 +40,13 @@ from servicex.transformer.transformer_argument_parser import TransformerArgument
 from servicex.transformer.kafka_messaging import KafkaMessaging
 from servicex.transformer.object_store_manager import ObjectStoreManager
 from servicex.transformer.rabbit_mq_manager import RabbitMQManager
-from servicex.transformer.uproot_events import UprootEvents
-from servicex.transformer.uproot_transformer import UprootTransformer
 from servicex.transformer.arrow_writer import ArrowWriter
 from hashlib import sha1
 import os
 import pyarrow.parquet as pq
-import pyarrow as pa
 
-# Needed until we use xrootd>=5.2.0 (see https://github.com/ssl-hep/ServiceX_Uproot_Transformer/issues/22)
+# Needed until we use xrootd>=5.2.0 ( see
+# https://github.com/ssl-hep/ServiceX_Uproot_Transformer/issues/22 )
 uproot.open.defaults["xrootd_handler"] = uproot.MultithreadedXRootDSource
 
 # How many bytes does an average awkward array cell take up. This is just
@@ -200,7 +195,6 @@ def callback(channel, method, properties, body):
         tock = time.time()
         total_time = round(tock - tick, 2)
         if object_store:
-            sys.stderr.write("request_id: {0} output: {1} path: {2}".format(_request_id, safe_output_file, output_path))
             object_store.upload_file(_request_id, safe_output_file, output_path)
             os.remove(output_path)
 
@@ -215,20 +209,20 @@ def callback(channel, method, properties, body):
                                    total_bytes=0)
         logger.info("Time to successfully process {}: {} seconds".format(root_file, total_time))
         stop_process_times = get_process_info()
-        elapsed_process_times = TimeTuple(user=stop_process_times.user - start_process_times.user,
-                                          system=stop_process_times.system - start_process_times.system,
-                                          iowait=stop_process_times.iowait - start_process_times.iowait)
+        elapsed_times = TimeTuple(user=stop_process_times.user - start_process_times.user,
+                                  system=stop_process_times.system - start_process_times.system,
+                                  iowait=stop_process_times.iowait - start_process_times.iowait)
         stop_time = timeit.default_timer()
-        log_stats(startup_time, elapsed_process_times, running_time=(stop_time - start_time))
+        log_stats(startup_time, elapsed_times, running_time=(stop_time - start_time))
         record = {'filename': _file_path,
                   'file-id': _file_id,
                   'output-size': output_size,
                   'events': total_events,
                   'request-id': _request_id,
-                  'user-time': elapsed_process_times.user,
-                  'system-time': elapsed_process_times.system,
-                  'io-wait': elapsed_process_times.iowait,
-                  'total-time': elapsed_process_times.total_time,
+                  'user-time': elapsed_times.user,
+                  'system-time': elapsed_times.system,
+                  'io-wait': elapsed_times.iowait,
+                  'total-time': elapsed_times.total_time,
                   'wall-time': total_time}
         logger.info("Metric: {}".format(json.dumps(record)))
 
@@ -305,8 +299,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     logger = initialize_logging(args.request_id)
-    import minio
-    logger.warning(f"minio version: {minio.__version__}")
     kafka_brokers = TransformerArgumentParser.extract_kafka_brokers(args.brokerlist)
 
     logger.info(f"result destination: {args.result_destination}  output dir: {args.output_dir}")

@@ -169,7 +169,7 @@ def init_rabbit_mq(rabbitmq_url, retries, retry_interval):
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    logger  = initialize_logging()
+    logger = initialize_logging()
     if args.path:
         # checks the file
         (valid, info) = validate_request(args.path)
