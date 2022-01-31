@@ -276,6 +276,10 @@ def transform_single_file(file_path, output_path, servicex=None):
         arrow_writer = ArrowWriter(file_format=args.result_format,
                                    object_store=None,
                                    messaging=messaging)
+    else:
+        arrow_writer = ArrowWriter(file_format=args.result_format,
+                                   object_store=None,
+                                   messaging=None)
 
     transformer = ArrowIterator(arrow, file_path=file_path)
     arrow_writer.write_branches_to_arrow(transformer=transformer, topic_name=args.request_id,
@@ -293,7 +297,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     logger = initialize_logging(args.request_id)
-    logger.info("-----", sys.path)
+    logger.info(f"sys.path: {sys.path}")
     logger.info(f"result destination: {args.result_destination}  output dir: {args.output_dir}")
 
     if args.output_dir:
