@@ -4,7 +4,7 @@ coverage==4.5.2
 flake8==3.5.0
 lz4==2.2.1
 minio==5.0.10
-numpy==1.21.2
+numpy==1.22.0
 pika==1.1.0
 pyarrow==3.0.0
 pytest==4.6.11
