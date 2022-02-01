@@ -277,9 +277,7 @@ def transform_single_file(file_path, output_path, servicex=None):
                                    object_store=None,
                                    messaging=messaging)
     else:
-        arrow_writer = ArrowWriter(file_format=args.result_format,
-                                   object_store=None,
-                                   messaging=None)
+        arrow_writer = ArrowWriter(file_format=args.result_format)
 
     transformer = ArrowIterator(arrow, file_path=file_path)
     arrow_writer.write_branches_to_arrow(transformer=transformer, topic_name=args.request_id,
