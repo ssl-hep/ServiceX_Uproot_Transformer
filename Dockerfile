@@ -41,7 +41,7 @@ RUN /opt/conda/bin/pip install safety==1.9.0
 
 # BenGalewsky Feb 1, 2022 - there is an unfixed numpy vulnerability
 # https://github.com/numpy/numpy/issues/19038
-RUN safety check -r requirements.txt -i 44715
+RUN safety check -r requirements.txt -i 44715 -i44716 -i 44717
 RUN /opt/conda/bin/pip install --no-cache-dir -r requirements.txt
 
 ENV X509_USER_PROXY=/tmp/grid-security/x509up
