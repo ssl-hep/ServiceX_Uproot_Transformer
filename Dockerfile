@@ -1,8 +1,9 @@
 # based on https://github.com/dask/dask-docker/blob/master/base/Dockerfile
 # but more permissive about image size due to read-only requirement in openshift
 # FROM daskdev/dask:2.9.0
-FROM continuumio/miniconda3:4.7.12
+FROM continuumio/miniconda3:4.10.3
 
+RUN apt-get update -y
 RUN apt-get install gnupg2 -y \
     && wget -q -O - https://dist.eugridpma.info/distribution/igtf/current/GPG-KEY-EUGridPMA-RPM-3 | apt-key add - \
     && echo "deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core" >> /etc/apt/sources.list \
@@ -23,10 +24,10 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    numpy==1.18.1 \
-    pandas==0.25.3 \
-    numba==0.48.0 \
-    scipy==1.4.1 \
+    numpy \ 
+    pandas \
+    numba \
+    scipy \
     && conda clean -tipsy
 
 RUN apt update && \
@@ -51,7 +52,6 @@ COPY proxy-exporter.sh .
 RUN chmod +x proxy-exporter.sh
 
 COPY transformer.py .
-COPY validate_requests.py .
 ENV PYTHONUNBUFFERED=1
 ENV X509_USER_PROXY=/tmp/grid-security/x509up
 

@@ -234,7 +234,7 @@ def callback(channel, method, properties, body):
                                            total_time=total_time,
                                            total_events=0,
                                            total_bytes=0)
-                logger.info("Time tos process {}: {} seconds".format(
+                logger.info("Time to process {}: {} seconds".format(
                     root_file, total_time))
                 file_done = True
                 break
@@ -284,6 +284,7 @@ def callback(channel, method, properties, body):
               'io-wait': elapsed_process_times.iowait,
               'total-time': elapsed_process_times.total_time,
               'wall-time': total_time}
+    print(">>>>>>>>", record)
     logger.info("Metric: {}".format(json.dumps(record)))
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
