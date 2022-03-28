@@ -284,7 +284,7 @@ def callback(channel, method, properties, body):
               'io-wait': elapsed_process_times.iowait,
               'total-time': elapsed_process_times.total_time,
               'wall-time': total_time}
-    print(">>>>>>>>", record)
+    # print(">>>>>>>>", record)
     logger.info("Metric: {}".format(json.dumps(record)))
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
