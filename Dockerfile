@@ -9,7 +9,7 @@ RUN conda install --yes \
     -c conda-forge \
     conda-build \
     lz4 \
-    xrootd==5.1.1 \
+    xrootd==5.4.3 \
     tini==0.18.0 \
     && conda build purge-all && conda clean -ti
 
