@@ -46,7 +46,7 @@ import pyarrow.parquet as pq
 
 import uproot
 
-# Needed until we use xrootd>=5.2.0
+# Needed. xrootd==5.4.3 did not fix it.
 # see https://github.com/ssl-hep/ServiceX_Uproot_Transformer/issues/22
 uproot.open.defaults["xrootd_handler"] = uproot.MultithreadedXRootDSource
 
